@@ -59,6 +59,11 @@ def get_parser():
 
     return parser
 
+def select_roi(image):
+    roi = cv2.selectROI("Selecione a ROI e pressione Enter", image, fromCenter=False, showCrosshair=True)
+    cv2.destroyAllWindows()
+    return roi
+
 
 def main():
     parser = get_parser()
@@ -88,14 +93,26 @@ def main():
             outfilename = os.path.join(args.output, f"out_{bname}.avi")
             res, fps = get_local_video_info(args.input)
 
+        cap = cv2.VideoCapture(args.input)
+        ret, first_frame = cap.read()
+        if not ret:
+            raise ValueError("nao foi possivel pegar o primeiro frame do video")
+        
+        #roi
+        # roi = select_roi(first_frame)
+        roi = (288, 322, 770, 396)
+
+        print(f"ROI selecioando: {roi}")
         if args.draw:
             fourcc = cv2.VideoWriter_fourcc(*"XVID")
             out = cv2.VideoWriter(outfilename, fourcc, fps, res)
             _logger.info(f"Saving result to {outfilename}..")
 
-        for (detected_objects_history, frame) in predictor.recognize_video(args.input):
+        for (detected_objects_history, frame) in predictor.recognize_video(args.input, roi=roi):
+
             if args.draw:
                 out.write(frame)
+                # out.write(frame_cropped)
 
     elif input_type == InputType.Image:
         image_files = get_all_files(args.input) if os.path.isdir(args.input) else [args.input]
@@ -114,3 +131,35 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+# IMDB DATASET
+#python demo.py --input "videos/catraca_1MTest.avi" --output "output" --detector-weights "models/yolov8x_person_face.pt " --checkpoint "models/model_imdb_cross_person_4.22_99.46.pth.tar" --device "cuda:0" --with-persons --draw  #MIVOLOD1 + YOLOV8XFACEPERSON + body e face output\out_catraca_1MTest(MV1256face_body).avi
+#python demo.py --input "videos/catraca_1MTest.avi" --output "output" --detector-weights "models/yolov8x_person_face.pt " --checkpoint "models/model_imdb_cross_person_4.22_99.46.pth.tar" --device "cuda:0" --with-persons --disable-faces --draw # MIVOLOD1+ YOLOV8FACEPERSON + apenas body output\out_catraca_1MTest(MV1256body).avi
+#python demo.py --input "videos/catraca_1MTest.avi" --output "output" --detector-weights "models/yolov8x_person_face.pt " --checkpoint "models/model_imdb_cross_person_4.22_99.46.pth.tar" --device "cuda:0" --draw # MIVOLOD1+ YOLOV8FACEPERSON + apenas face output\out_catraca_1MTest(MV1256face).avi
+#python demo.py --input "videos/catraca_1MTest.avi" --output "output" --detector-weights "models/yolov8l-face.pt " --checkpoint "models/model_imdb_cross_person_4.22_99.46.pth.tar" --device "cuda:0" --draw # MIVOLOD1+ YOLOV8FACEPERSON + apenas face output\out_catraca_1MTest(MV1256face_yolov8lface).avi
+
+#python demo.py --input "videos/Teste Fila_6_6_20240629231343.avi" --output "output" --detector-weights "models/yolov8x_person_face.pt" --checkpoint "models/model_imdb_cross_person_4.22_99.46.pth.tar" --device "cuda:0" --with-persons --draw  #MIVOLOD1 + YOLOV8XFACEPERSON + body e face output\out_Teste Fila_6_6_20240629231343(MV1256face_body).avi
+
+#python demo.py --input "videos/Teste Fila_6_6_20240630181728Frente.avi" --output "output" --detector-weights "models/yolov8x_person_face.pt" --checkpoint "models/model_imdb_cross_person_4.22_99.46.pth.tar" --device "cuda:0" --with-persons --draw #MIVOLOD1 + YOLOV8XFACEPERSON + body e face output\out_Teste Fila_6_6_20240630181728Frente(MV1256face_body).avi
+#python demo.py --input "videos/Teste Fila_6_6_20240630181728Frente.avi" --output "output" --detector-weights "models/yolov8x_person_face.pt" --checkpoint "models/model_imdb_cross_person_4.22_99.46.pth.tar" --device "cuda:0" --draw #MIVOLOD1 + YOLOV8XFACEPERSON + apenas face output\out_Teste Fila_6_6_20240630181728Frente(MV1256face).avi
+#python demo.py --input "videos/Teste Fila_6_6_20240630181728Frente.avi" --output "output" --detector-weights "models/yolov8l-face.pt" --checkpoint "models/model_imdb_cross_person_4.22_99.46.pth.tar" --device "cuda:0" --draw #MIVOLOD1 + YOLOV8lface + apenas face output\out_Teste Fila_6_6_20240630181728Frente(MV1256face_yolov8lface
+# 
+
+
+
+
+
+
+#python demo.py --input "videos/catraca_1MTest.avi" --output "output" --detector-weights "models/yolov8x_person_face.pt " --checkpoint "models/d5_448_87.0.pth.tar" --device "cuda:0" --with-persons --draw  # MIVOLOD5 + YOLOV8XFACEPERSON + body e face       
+# testcmd python demo.py --input "videos/catraca_1MTest.avi" --output "output" --detector-weights "models/yolov8x_person_face.pt " --checkpoint "models/model_imdb_cross_person_4.22_99.46.pth.tar" --device "cuda:0" --draw # MIVOLOD1+ YOLOV8FACEPERSON output\out_catraca_1MTest(MV1256face).avi
+
+
+# UTK DATASET
+#python demo.py --input "videos/catraca_1MTest.avi" --output "output" --detector-weights "models/yolov8l-face.pt " --checkpoint "models/model_imdb_cross_person_4.22_99.46.pth.tar" --device "cuda:0" --draw #MIVOLOD1 + YOLOV8lface + apenas face output + UTK DATASETMODEL \***************.avi
+
+
+
+# COM ROI
+# python demo.py --input "videos/Teste Fila_6_6_20240630181728Frente.avi" --output "outputROI" --detector-weights "models/yolov8l-face.pt" --checkpoint "models/model_imdb_cross_person_4.22_99.46.pth.tar" --device "cuda:0" --draw   outputROI\out_Teste Fila_6_6_20240630181728Frente(MV1256face_yolov8lface_ROI).avi face apenas
+# python demo.py --input "videos/Teste Fila_6_6_20240630181728Frente.avi" --output "outputROI" --detector-weights "models/yolov8x_person_face.pt" --checkpoint "models/model_imdb_cross_person_4.22_99.46.pth.tar" --device "cuda:0" --draw --with-persons outputROI\out_Teste Fila_6_6_20240630181728Frente(MV1256face_body_ROI).avi body e face
+# python demo.py --input "videos/Teste Fila_6_6_20240630181728Frente.avi" --output "outputROI" --detector-weights "models/yolov8x_person_face.pt " --checkpoint "models/model_imdb_cross_person_4.22_99.46.pth.tar" --device "cuda:0" --with-persons --disable-faces --draw outputROI\out_Teste Fila_6_6_20240630181728Frente(MV1256body_ROI).avi body apenas

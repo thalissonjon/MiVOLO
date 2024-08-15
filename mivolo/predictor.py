@@ -33,7 +33,8 @@ class Predictor:
 
         return detected_objects, out_im
 
-    def recognize_video(self, source: str) -> Generator:
+    def recognize_video(self, source: str, roi = None) -> Generator:
+
         video_capture = cv2.VideoCapture(source)
         if not video_capture.isOpened():
             raise ValueError(f"Failed to open video source {source}")
@@ -44,10 +45,19 @@ class Predictor:
         for _ in tqdm.tqdm(range(total_frames)):
             ret, frame = video_capture.read()
             if not ret:
+                print("falha ao ler o frame")
                 break
+            
+            if roi:
+                x, y, w, h = roi
+                frame_cropped = frame[y:y+h, x:x+w]
+            else:
+                frame_cropped = frame
 
-            detected_objects: PersonAndFaceResult = self.detector.track(frame)
-            self.age_gender_model.predict(frame, detected_objects)
+            # detected_objects: PersonAndFaceResult = self.detector.track(frame)
+            detected_objects: PersonAndFaceResult = self.detector.track(frame_cropped)
+            # self.age_gender_model.predict(frame, detected_objects)
+            self.age_gender_model.predict(frame_cropped, detected_objects)
 
             current_frame_objs = detected_objects.get_results_for_tracking()
             cur_persons: Dict[int, AGE_GENDER_TYPE] = current_frame_objs[0]
@@ -63,6 +73,23 @@ class Predictor:
                     detected_objects_history[guid].append(data)
 
             detected_objects.set_tracked_age_gender(detected_objects_history)
+            # if self.draw:
+            #     frame = detected_objects.plot()
+            #     # frame_cropped = detected_objects.plot(frame_cropped)
+            #     # detected_objects.plot(frame)
+
             if self.draw:
-                frame = detected_objects.plot()
+                try:
+                    annotated_cropped_frame = detected_objects.plot()
+                    if roi:
+                        frame[y:y+h, x:x+w] = annotated_cropped_frame
+                    else:
+                        frame = annotated_cropped_frame
+                except ValueError as e:
+                    print(f"erro ao desenhar no frame_cropped: {e}")
+                    continue
+
+            # desenhar roi no frame orig
+                if roi:
+                    cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
             yield detected_objects_history, frame
