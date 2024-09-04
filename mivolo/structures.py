@@ -174,6 +174,7 @@ class PersonAndFaceResult:
 
     def plot(
         self,
+        results: Results,
         conf=False,
         line_width=None,
         font_size=None,
@@ -217,17 +218,17 @@ class PersonAndFaceResult:
         for person_ind in self.unassigned_persons_inds:
             colors_by_ind[person_ind] = 1
 
-        names = self.yolo_results.names
+        names = results.names
         annotator = Annotator(
-            deepcopy(self.yolo_results.orig_img if img is None else img),
+            deepcopy(results.orig_img if img is None else img),
             line_width,
             font_size,
             font,
             pil,
             example=names,
         )
-        pred_boxes, show_boxes = self.yolo_results.boxes, boxes
-        pred_probs, show_probs = self.yolo_results.probs, probs
+        pred_boxes, show_boxes = results.boxes, boxes
+        pred_probs, show_probs = results.probs, probs
 
         if pred_boxes and show_boxes:
             for bb_ind, (d, age, gender, gender_score) in enumerate(
@@ -284,10 +285,10 @@ class PersonAndFaceResult:
             self.set_gender(person_ind, gender, 1.0)
             self.set_age(person_ind, age)
 
-    def _get_id_by_ind(self, ind: Optional[int] = None) -> int:
+    def _get_id_by_ind(self, results: Results, ind: Optional[int] = None) -> int:
         if ind is None:
             return -1
-        obj_id = self.yolo_results.boxes[ind].id
+        obj_id = results.boxes[ind].id
         if obj_id is None:
             return -1
         return obj_id.item()
@@ -392,7 +393,7 @@ class PersonAndFaceResult:
 
 
     def crop_object(
-        self, full_image: np.ndarray, ind: int, cut_other_classes: Optional[List[str]] = None
+        self, full_image: np.ndarray, results: Results, ind: int, cut_other_classes: Optional[List[str]] = None
     ) -> Optional[np.ndarray]:
 
         IOU_THRESH = 0.000001
@@ -400,9 +401,9 @@ class PersonAndFaceResult:
         CROP_ROUND_RATE = 0.3
         MIN_PERSON_SIZE = 50
 
-        obj_bbox = self.get_bbox_by_ind(ind, *full_image.shape[:2])
+        obj_bbox = self.get_bbox_by_ind(ind, results, *full_image.shape[:2])
         x1, y1, x2, y2 = obj_bbox
-        cur_cat = self.yolo_results.names[int(self.yolo_results.boxes[ind].cls)]
+        cur_cat = results.names[int(results.boxes[ind].cls)]
         # get crop of face or person
         obj_image = full_image[y1:y2, x1:x2].copy()
         crop_h, crop_w = obj_image.shape[:2]
@@ -415,14 +416,14 @@ class PersonAndFaceResult:
 
         # calc iou between obj_bbox and other bboxes
         other_bboxes: List[torch.tensor] = [
-            self.get_bbox_by_ind(other_ind, *full_image.shape[:2]) for other_ind in range(len(self.yolo_results.boxes))
+            self.get_bbox_by_ind(other_ind, results, *full_image.shape[:2]) for other_ind in range(len(results.boxes))
         ]
 
         iou_matrix = box_iou(torch.stack([obj_bbox]), torch.stack(other_bboxes)).cpu().numpy()[0]
 
         # cut out other objects in case of intersection
-        for other_ind, (det, iou) in enumerate(zip(self.yolo_results.boxes, iou_matrix)):
-            other_cat = self.yolo_results.names[int(det.cls)]
+        for other_ind, (det, iou) in enumerate(zip(results.boxes, iou_matrix)):
+            other_cat = results.names[int(det.cls)]
             if ind == other_ind or iou < IOU_THRESH or other_cat not in cut_other_classes:
                 continue
             o_x1, o_y1, o_x2, o_y2 = det.xyxy.squeeze().type(torch.int32)
@@ -455,20 +456,20 @@ class PersonAndFaceResult:
         crops_data = PersonAndFaceCrops()
         for face_ind, person_ind in self.face_to_person_map.items():
             # face_image = self.crop_object(image, face_ind, self.yolo_results_face, cut_other_classes=[])
-            face_image = self.crop_object(image, face_ind, cut_other_classes=[])
+            face_image = self.crop_object(image, self.yolo_results_face, face_ind, cut_other_classes=[])
 
             if person_ind is None:
                 crops_data.crops_faces_wo_body[face_ind] = face_image
                 continue
 
             # person_image = self.crop_object(image, person_ind, self.yolo_results_body, cut_other_classes=["face", "person"])
-            person_image = self.crop_object(image, person_ind, cut_other_classes=["face", "person"])
+            person_image = self.crop_object(image, self.yolo_results_body, person_ind, cut_other_classes=["face", "person"])
 
             crops_data.crops_faces[face_ind] = face_image
             crops_data.crops_persons[person_ind] = person_image
 
         for person_ind in self.unassigned_persons_inds:
-            person_image = self.crop_object(image, person_ind, self.yolo_results_body, cut_other_classes=["face", "person"])
+            person_image = self.crop_object(image, self.yolo_results_body, person_ind, cut_other_classes=["face", "person"])
             crops_data.crops_persons_wo_face[person_ind] = person_image
 
         return crops_data

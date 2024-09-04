@@ -99,7 +99,7 @@ class AGDetections:
         self.age_gender_model.predict(image, combined_results)
 
         # Plota os resultados na imagem
-        out_im = combined_results.plot()
+        out_im = combined_results.plot(combined_results.yolo_results_body)
 
         return combined_results, out_im
 
@@ -170,12 +170,12 @@ class AGDetections:
         
     def extract_person_info(self, detected_objects):
         person_info = []
-        person_inds = detected_objects.get_bboxes_inds("person")
+        person_inds = detected_objects.get_bboxes_inds("person", detected_objects.yolo_results_body)
         # person_inds = detected_objects.get_bboxes_inds("face")
 
         for ind in person_inds:
-            person_id = detected_objects._get_id_by_ind(ind)
-            bbox = detected_objects.get_bbox_by_ind(ind)
+            person_id = detected_objects._get_id_by_ind(detected_objects.yolo_results_body, ind)
+            bbox = detected_objects.get_bbox_by_ind(ind, detected_objects.yolo_results_body)
             age = detected_objects.ages[ind]
             gender = detected_objects.genders[ind]
 
