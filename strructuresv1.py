@@ -133,7 +133,6 @@ class PersonAndFaceResult:
         names = set(results.names.values())
         # assert "person" in names and "face" in names
 
-        assert "face" in names
         # initially no faces and persons are associated to each other
         self.face_to_person_map: Dict[int, Optional[int]] = {ind: None for ind in self.get_bboxes_inds("face")}
         self.unassigned_persons_inds: List[int] = self.get_bboxes_inds("person")

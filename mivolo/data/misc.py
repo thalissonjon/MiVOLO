@@ -184,6 +184,11 @@ def prepare_classification_images(
             img = img.unsqueeze(0)
             prepared_images.append(img)
             continue
+            
+        # print(f"Dimensões da imagem: {img.shape}")
+        if img.shape[0] == 0 or img.shape[1] == 0:
+            raise ValueError("A imagem tem dimensões inválidas, levando a uma divisão por zero.")
+
         img = class_letterbox(img, new_shape=(target_size, target_size))
         img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
@@ -207,6 +212,7 @@ def prepare_classification_images(
         prepared_input = prepared_input.to(device)
 
     return prepared_input
+
 
 
 def IOU(bb1: Union[tuple, list], bb2: Union[tuple, list], norm_second_bbox: bool = False) -> float:

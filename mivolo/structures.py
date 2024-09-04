@@ -127,40 +127,39 @@ class PersonAndFaceCrops:
 
 
 class PersonAndFaceResult:
-    def __init__(self, results: Results):
+    def __init__(self, results_body: Results, results_face: Results):
+        self.yolo_results_body = results_body
+        self.yolo_results_face = results_face
 
-        self.yolo_results = results
-        names = set(results.names.values())
-        # assert "person" in names and "face" in names
+        # Mapear as detecções de face para as de pessoa
+        self.face_to_person_map: Dict[int, Optional[int]] = {ind: None for ind in self.get_bboxes_inds("face", self.yolo_results_face)}
+        self.unassigned_persons_inds: List[int] = self.get_bboxes_inds("person", self.yolo_results_body)
 
-        assert "face" in names
-        # initially no faces and persons are associated to each other
-        self.face_to_person_map: Dict[int, Optional[int]] = {ind: None for ind in self.get_bboxes_inds("face")}
-        self.unassigned_persons_inds: List[int] = self.get_bboxes_inds("person")
-        n_objects = len(self.yolo_results.boxes)
+        # Número de objetos em cada detecção
+        n_objects = len(self.yolo_results_body.boxes) + len(self.yolo_results_face.boxes)
         self.ages: List[Optional[float]] = [None for _ in range(n_objects)]
         self.genders: List[Optional[str]] = [None for _ in range(n_objects)]
         self.gender_scores: List[Optional[float]] = [None for _ in range(n_objects)]
 
+
     @property
     def n_objects(self) -> int:
-        return len(self.yolo_results.boxes)
+        return len(self.yolo_results_body.boxes) + len(self.yolo_results_face.boxes)
 
     @property
     def n_faces(self) -> int:
-        return len(self.get_bboxes_inds("face"))
+        return len(self.get_bboxes_inds("face", self.yolo_results_face))
 
     @property
     def n_persons(self) -> int:
-        return len(self.get_bboxes_inds("person"))
+        return len(self.get_bboxes_inds("person", self.yolo_results_body))
 
-    def get_bboxes_inds(self, category: str) -> List[int]:
+    def get_bboxes_inds(self, category: str, results: Results) -> List[int]:
         bboxes: List[int] = []
-        for ind, det in enumerate(self.yolo_results.boxes):
-            name = self.yolo_results.names[int(det.cls)]
+        for ind, det in enumerate(results.boxes):
+            name = results.names[int(det.cls)]
             if name == category:
                 bboxes.append(ind)
-
         return bboxes
 
     def get_distance_to_center(self, bbox_ind: int) -> float:
@@ -293,14 +292,15 @@ class PersonAndFaceResult:
             return -1
         return obj_id.item()
 
-    def get_bbox_by_ind(self, ind: int, im_h: int = None, im_w: int = None) -> torch.tensor:
-        bb = self.yolo_results.boxes[ind].xyxy.squeeze().type(torch.int32)
+    def get_bbox_by_ind(self, ind: int, results: Results, im_h: int = None, im_w: int = None) -> torch.tensor:
+        bb = results.boxes[ind].xyxy.squeeze().type(torch.int32)
         if im_h is not None and im_w is not None:
             bb[0] = torch.clamp(bb[0], min=0, max=im_w - 1)
             bb[1] = torch.clamp(bb[1], min=0, max=im_h - 1)
             bb[2] = torch.clamp(bb[2], min=0, max=im_w - 1)
             bb[3] = torch.clamp(bb[3], min=0, max=im_h - 1)
         return bb
+
 
     def set_age(self, ind: Optional[int], age: float):
         if ind is not None:
@@ -373,11 +373,12 @@ class PersonAndFaceResult:
         return persons, faces
 
     def associate_faces_with_persons(self):
-        face_bboxes_inds: List[int] = self.get_bboxes_inds("face")
-        person_bboxes_inds: List[int] = self.get_bboxes_inds("person")
+        face_bboxes_inds = self.get_bboxes_inds("face", self.yolo_results_face)
+        person_bboxes_inds = self.get_bboxes_inds("person", self.yolo_results_body)
 
-        face_bboxes: List[torch.tensor] = [self.get_bbox_by_ind(ind) for ind in face_bboxes_inds]
-        person_bboxes: List[torch.tensor] = [self.get_bbox_by_ind(ind) for ind in person_bboxes_inds]
+        print(self.yolo_results_face)
+        face_bboxes = [self.get_bbox_by_ind(ind, self.yolo_results_face) for ind in face_bboxes_inds]
+        person_bboxes = [self.get_bbox_by_ind(ind, self.yolo_results_body) for ind in person_bboxes_inds]
 
         self.face_to_person_map = {ind: None for ind in face_bboxes_inds}
         assigned_faces, unassigned_persons_inds = assign_faces(person_bboxes, face_bboxes)
@@ -388,6 +389,7 @@ class PersonAndFaceResult:
             self.face_to_person_map[face_ind] = person_ind
 
         self.unassigned_persons_inds = [person_bboxes_inds[person_ind] for person_ind in unassigned_persons_inds]
+
 
     def crop_object(
         self, full_image: np.ndarray, ind: int, cut_other_classes: Optional[List[str]] = None
@@ -450,24 +452,24 @@ class PersonAndFaceResult:
         return obj_image
 
     def collect_crops(self, image) -> PersonAndFaceCrops:
-
         crops_data = PersonAndFaceCrops()
         for face_ind, person_ind in self.face_to_person_map.items():
+            # face_image = self.crop_object(image, face_ind, self.yolo_results_face, cut_other_classes=[])
             face_image = self.crop_object(image, face_ind, cut_other_classes=[])
 
             if person_ind is None:
                 crops_data.crops_faces_wo_body[face_ind] = face_image
                 continue
 
+            # person_image = self.crop_object(image, person_ind, self.yolo_results_body, cut_other_classes=["face", "person"])
             person_image = self.crop_object(image, person_ind, cut_other_classes=["face", "person"])
 
             crops_data.crops_faces[face_ind] = face_image
             crops_data.crops_persons[person_ind] = person_image
 
         for person_ind in self.unassigned_persons_inds:
-            person_image = self.crop_object(image, person_ind, cut_other_classes=["face", "person"])
+            person_image = self.crop_object(image, person_ind, self.yolo_results_body, cut_other_classes=["face", "person"])
             crops_data.crops_persons_wo_face[person_ind] = person_image
 
-        # uncomment to save preprocessed crops
-        # crops_data.save()
         return crops_data
+

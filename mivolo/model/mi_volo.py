@@ -156,8 +156,11 @@ class MiVOLO:
         ):
             # nothing to process
             return
-
+        
         faces_input, person_input, faces_inds, bodies_inds = self.prepare_crops(image, detected_bboxes)
+        
+        if faces_input is not None and (faces_input.shape[0] <= 0 or faces_input.shape[1] <= 0):
+            raise ValueError("Recorte da imagem resultou em dimensões inválidas (altura ou largura <= 0)")
 
         if faces_input is None and person_input is None:
             # nothing to process
@@ -219,7 +222,7 @@ class MiVOLO:
 
         if not self.meta.use_face_crops:
             assert all(f is None for f in faces_crops)
-
+        
         faces_input = prepare_classification_images(
             faces_crops, self.input_size, self.data_config["mean"], self.data_config["std"], device=self.device
         )

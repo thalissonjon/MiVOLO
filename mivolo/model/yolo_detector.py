@@ -7,6 +7,7 @@ import torch
 from mivolo.structures import PersonAndFaceResult
 from ultralytics import YOLO
 from ultralytics.engine.results import Results
+import json
 
 # because of ultralytics bug it is important to unset CUBLAS_WORKSPACE_CONFIG after the module importing
 os.unsetenv("CUBLAS_WORKSPACE_CONFIG")
@@ -48,4 +49,7 @@ class Detector:
     def track(self, image: Union[np.ndarray, str, "PIL.Image"]) -> PersonAndFaceResult:
         print(f"threshhold utilizado: {self.detector_kwargs['conf']}")  
         results: Results = self.yolo.track(image, persist=True, **self.detector_kwargs)[0]
-        return PersonAndFaceResult(results)
+        return results
+        # return PersonAndFaceResult(results)
+    
+    

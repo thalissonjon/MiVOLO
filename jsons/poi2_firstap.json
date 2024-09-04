@@ -1,0 +1,1575 @@
+[
+    {
+        "uniqueId": 17,
+        "frame_number": 3,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 0.26666666666666666,
+        "bbox": [
+            422,
+            320,
+            103,
+            316
+        ]
+    },
+    {
+        "uniqueId": 10,
+        "frame_number": 3,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 0.26666666666666666,
+        "bbox": [
+            501,
+            384,
+            124,
+            180
+        ]
+    },
+    {
+        "uniqueId": 26,
+        "frame_number": 3,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 0.26666666666666666,
+        "bbox": [
+            354,
+            395,
+            107,
+            320
+        ]
+    },
+    {
+        "uniqueId": 25,
+        "frame_number": 3,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 0.26666666666666666,
+        "bbox": [
+            671,
+            458,
+            136,
+            255
+        ]
+    },
+    {
+        "uniqueId": 14,
+        "frame_number": 3,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 0.26666666666666666,
+        "bbox": [
+            731,
+            569,
+            144,
+            150
+        ]
+    },
+    {
+        "uniqueId": 27,
+        "frame_number": 3,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 0.26666666666666666,
+        "bbox": [
+            483,
+            495,
+            165,
+            222
+        ]
+    },
+    {
+        "uniqueId": 54,
+        "frame_number": 29,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 2.0,
+        "bbox": [
+            510,
+            437,
+            72,
+            93
+        ]
+    },
+    {
+        "uniqueId": 67,
+        "frame_number": 56,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 3.8,
+        "bbox": [
+            503,
+            382,
+            159,
+            287
+        ]
+    },
+    {
+        "uniqueId": 41,
+        "frame_number": 62,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 4.2,
+        "bbox": [
+            727,
+            650,
+            117,
+            66
+        ]
+    },
+    {
+        "uniqueId": 83,
+        "frame_number": 89,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 6.0,
+        "bbox": [
+            507,
+            449,
+            107,
+            181
+        ]
+    },
+    {
+        "uniqueId": 86,
+        "frame_number": 99,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 6.666666666666667,
+        "bbox": [
+            500,
+            604,
+            163,
+            111
+        ]
+    },
+    {
+        "uniqueId": 91,
+        "frame_number": 106,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 7.133333333333334,
+        "bbox": [
+            732,
+            642,
+            150,
+            77
+        ]
+    },
+    {
+        "uniqueId": 93,
+        "frame_number": 110,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 7.4,
+        "bbox": [
+            745,
+            642,
+            143,
+            72
+        ]
+    },
+    {
+        "uniqueId": 13,
+        "frame_number": 119,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 8.0,
+        "bbox": [
+            547,
+            356,
+            108,
+            226
+        ]
+    },
+    {
+        "uniqueId": 102,
+        "frame_number": 122,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 8.2,
+        "bbox": [
+            654,
+            637,
+            90,
+            82
+        ]
+    },
+    {
+        "uniqueId": 119,
+        "frame_number": 158,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 10.6,
+        "bbox": [
+            758,
+            628,
+            96,
+            91
+        ]
+    },
+    {
+        "uniqueId": 56,
+        "frame_number": 168,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 11.266666666666667,
+        "bbox": [
+            744,
+            307,
+            123,
+            332
+        ]
+    },
+    {
+        "uniqueId": 128,
+        "frame_number": 172,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 11.533333333333333,
+        "bbox": [
+            539,
+            479,
+            189,
+            240
+        ]
+    },
+    {
+        "uniqueId": 68,
+        "frame_number": 174,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 11.666666666666666,
+        "bbox": [
+            390,
+            375,
+            123,
+            215
+        ]
+    },
+    {
+        "uniqueId": 132,
+        "frame_number": 179,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 12.0,
+        "bbox": [
+            487,
+            309,
+            95,
+            327
+        ]
+    },
+    {
+        "uniqueId": 31,
+        "frame_number": 185,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 12.4,
+        "bbox": [
+            378,
+            350,
+            87,
+            266
+        ]
+    },
+    {
+        "uniqueId": 137,
+        "frame_number": 190,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 12.733333333333333,
+        "bbox": [
+            618,
+            542,
+            180,
+            177
+        ]
+    },
+    {
+        "uniqueId": 80,
+        "frame_number": 194,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 13.0,
+        "bbox": [
+            404,
+            375,
+            85,
+            207
+        ]
+    },
+    {
+        "uniqueId": 140,
+        "frame_number": 194,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 13.0,
+        "bbox": [
+            264,
+            566,
+            143,
+            153
+        ]
+    },
+    {
+        "uniqueId": 24,
+        "frame_number": 200,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 13.4,
+        "bbox": [
+            319,
+            312,
+            93,
+            318
+        ]
+    },
+    {
+        "uniqueId": 135,
+        "frame_number": 211,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 14.133333333333333,
+        "bbox": [
+            422,
+            404,
+            101,
+            131
+        ]
+    },
+    {
+        "uniqueId": 39,
+        "frame_number": 213,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 14.266666666666667,
+        "bbox": [
+            544,
+            364,
+            102,
+            233
+        ]
+    },
+    {
+        "uniqueId": 153,
+        "frame_number": 219,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 14.666666666666666,
+        "bbox": [
+            499,
+            593,
+            114,
+            126
+        ]
+    },
+    {
+        "uniqueId": 90,
+        "frame_number": 242,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 16.2,
+        "bbox": [
+            393,
+            353,
+            79,
+            267
+        ]
+    },
+    {
+        "uniqueId": 166,
+        "frame_number": 253,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 16.933333333333334,
+        "bbox": [
+            756,
+            620,
+            131,
+            99
+        ]
+    },
+    {
+        "uniqueId": 163,
+        "frame_number": 260,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 17.4,
+        "bbox": [
+            367,
+            329,
+            114,
+            289
+        ]
+    },
+    {
+        "uniqueId": 155,
+        "frame_number": 265,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 17.733333333333334,
+        "bbox": [
+            383,
+            342,
+            73,
+            278
+        ]
+    },
+    {
+        "uniqueId": 178,
+        "frame_number": 281,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 18.8,
+        "bbox": [
+            384,
+            358,
+            81,
+            272
+        ]
+    },
+    {
+        "uniqueId": 181,
+        "frame_number": 286,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 19.133333333333333,
+        "bbox": [
+            478,
+            571,
+            79,
+            147
+        ]
+    },
+    {
+        "uniqueId": 187,
+        "frame_number": 296,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 19.8,
+        "bbox": [
+            523,
+            487,
+            83,
+            159
+        ]
+    },
+    {
+        "uniqueId": 138,
+        "frame_number": 301,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 20.133333333333333,
+        "bbox": [
+            334,
+            329,
+            83,
+            301
+        ]
+    },
+    {
+        "uniqueId": 197,
+        "frame_number": 321,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 21.466666666666665,
+        "bbox": [
+            442,
+            638,
+            90,
+            78
+        ]
+    },
+    {
+        "uniqueId": 57,
+        "frame_number": 360,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 24.066666666666666,
+        "bbox": [
+            455,
+            398,
+            85,
+            155
+        ]
+    },
+    {
+        "uniqueId": 229,
+        "frame_number": 391,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 26.133333333333333,
+        "bbox": [
+            792,
+            636,
+            150,
+            83
+        ]
+    },
+    {
+        "uniqueId": 22,
+        "frame_number": 393,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 26.266666666666666,
+        "bbox": [
+            558,
+            364,
+            98,
+            216
+        ]
+    },
+    {
+        "uniqueId": 231,
+        "frame_number": 403,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 26.933333333333334,
+        "bbox": [
+            726,
+            349,
+            118,
+            284
+        ]
+    },
+    {
+        "uniqueId": 23,
+        "frame_number": 431,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 28.8,
+        "bbox": [
+            456,
+            412,
+            102,
+            142
+        ]
+    },
+    {
+        "uniqueId": 245,
+        "frame_number": 434,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 29.0,
+        "bbox": [
+            760,
+            553,
+            143,
+            166
+        ]
+    },
+    {
+        "uniqueId": 242,
+        "frame_number": 442,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 29.533333333333335,
+        "bbox": [
+            773,
+            321,
+            133,
+            323
+        ]
+    },
+    {
+        "uniqueId": 194,
+        "frame_number": 499,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 33.333333333333336,
+        "bbox": [
+            476,
+            453,
+            74,
+            121
+        ]
+    },
+    {
+        "uniqueId": 98,
+        "frame_number": 503,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 33.6,
+        "bbox": [
+            472,
+            423,
+            85,
+            149
+        ]
+    },
+    {
+        "uniqueId": 285,
+        "frame_number": 564,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 37.666666666666664,
+        "bbox": [
+            721,
+            582,
+            208,
+            135
+        ]
+    },
+    {
+        "uniqueId": 257,
+        "frame_number": 600,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 40.06666666666667,
+        "bbox": [
+            544,
+            527,
+            66,
+            133
+        ]
+    },
+    {
+        "uniqueId": 84,
+        "frame_number": 719,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 48.0,
+        "bbox": [
+            568,
+            392,
+            112,
+            161
+        ]
+    },
+    {
+        "uniqueId": 327,
+        "frame_number": 732,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 48.86666666666667,
+        "bbox": [
+            477,
+            377,
+            84,
+            183
+        ]
+    },
+    {
+        "uniqueId": 342,
+        "frame_number": 732,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 48.86666666666667,
+        "bbox": [
+            581,
+            372,
+            108,
+            337
+        ]
+    },
+    {
+        "uniqueId": 259,
+        "frame_number": 737,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 49.2,
+        "bbox": [
+            407,
+            337,
+            93,
+            291
+        ]
+    },
+    {
+        "uniqueId": 351,
+        "frame_number": 757,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 50.53333333333333,
+        "bbox": [
+            643,
+            607,
+            100,
+            112
+        ]
+    },
+    {
+        "uniqueId": 70,
+        "frame_number": 784,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 52.333333333333336,
+        "bbox": [
+            553,
+            398,
+            86,
+            144
+        ]
+    },
+    {
+        "uniqueId": 363,
+        "frame_number": 788,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 52.6,
+        "bbox": [
+            885,
+            608,
+            102,
+            111
+        ]
+    },
+    {
+        "uniqueId": 365,
+        "frame_number": 792,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 52.86666666666667,
+        "bbox": [
+            484,
+            436,
+            94,
+            220
+        ]
+    },
+    {
+        "uniqueId": 366,
+        "frame_number": 793,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 52.93333333333333,
+        "bbox": [
+            631,
+            557,
+            71,
+            162
+        ]
+    },
+    {
+        "uniqueId": 364,
+        "frame_number": 803,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 53.6,
+        "bbox": [
+            417,
+            319,
+            98,
+            316
+        ]
+    },
+    {
+        "uniqueId": 375,
+        "frame_number": 812,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 54.2,
+        "bbox": [
+            841,
+            583,
+            149,
+            136
+        ]
+    },
+    {
+        "uniqueId": 376,
+        "frame_number": 814,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 54.333333333333336,
+        "bbox": [
+            718,
+            608,
+            118,
+            111
+        ]
+    },
+    {
+        "uniqueId": 11,
+        "frame_number": 817,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 54.53333333333333,
+        "bbox": [
+            568,
+            313,
+            106,
+            313
+        ]
+    },
+    {
+        "uniqueId": 383,
+        "frame_number": 829,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 55.333333333333336,
+        "bbox": [
+            830,
+            630,
+            100,
+            89
+        ]
+    },
+    {
+        "uniqueId": 377,
+        "frame_number": 837,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 55.86666666666667,
+        "bbox": [
+            471,
+            335,
+            89,
+            270
+        ]
+    },
+    {
+        "uniqueId": 184,
+        "frame_number": 838,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 55.93333333333333,
+        "bbox": [
+            402,
+            315,
+            87,
+            311
+        ]
+    },
+    {
+        "uniqueId": 0,
+        "frame_number": 843,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 56.266666666666666,
+        "bbox": [
+            636,
+            503,
+            112,
+            204
+        ]
+    },
+    {
+        "uniqueId": 381,
+        "frame_number": 861,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 57.46666666666667,
+        "bbox": [
+            650,
+            494,
+            150,
+            192
+        ]
+    },
+    {
+        "uniqueId": 210,
+        "frame_number": 867,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 57.86666666666667,
+        "bbox": [
+            290,
+            297,
+            171,
+            347
+        ]
+    },
+    {
+        "uniqueId": 384,
+        "frame_number": 873,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 58.266666666666666,
+        "bbox": [
+            427,
+            304,
+            123,
+            333
+        ]
+    },
+    {
+        "uniqueId": 400,
+        "frame_number": 886,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 59.13333333333333,
+        "bbox": [
+            763,
+            594,
+            106,
+            125
+        ]
+    },
+    {
+        "uniqueId": 164,
+        "frame_number": 888,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 59.266666666666666,
+        "bbox": [
+            625,
+            447,
+            87,
+            135
+        ]
+    },
+    {
+        "uniqueId": 406,
+        "frame_number": 896,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 59.8,
+        "bbox": [
+            761,
+            490,
+            93,
+            166
+        ]
+    },
+    {
+        "uniqueId": 409,
+        "frame_number": 907,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 60.53333333333333,
+        "bbox": [
+            810,
+            552,
+            162,
+            167
+        ]
+    },
+    {
+        "uniqueId": 412,
+        "frame_number": 910,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 60.733333333333334,
+        "bbox": [
+            476,
+            342,
+            110,
+            258
+        ]
+    },
+    {
+        "uniqueId": 411,
+        "frame_number": 910,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 60.733333333333334,
+        "bbox": [
+            633,
+            397,
+            138,
+            193
+        ]
+    },
+    {
+        "uniqueId": 413,
+        "frame_number": 910,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 60.733333333333334,
+        "bbox": [
+            565,
+            425,
+            111,
+            289
+        ]
+    },
+    {
+        "uniqueId": 302,
+        "frame_number": 914,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 61.0,
+        "bbox": [
+            419,
+            310,
+            94,
+            323
+        ]
+    },
+    {
+        "uniqueId": 316,
+        "frame_number": 919,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 61.333333333333336,
+        "bbox": [
+            590,
+            439,
+            88,
+            221
+        ]
+    },
+    {
+        "uniqueId": 415,
+        "frame_number": 921,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 61.46666666666667,
+        "bbox": [
+            523,
+            469,
+            165,
+            250
+        ]
+    },
+    {
+        "uniqueId": 201,
+        "frame_number": 925,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 61.733333333333334,
+        "bbox": [
+            550,
+            385,
+            92,
+            180
+        ]
+    },
+    {
+        "uniqueId": 304,
+        "frame_number": 933,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 62.266666666666666,
+        "bbox": [
+            336,
+            305,
+            102,
+            328
+        ]
+    },
+    {
+        "uniqueId": 403,
+        "frame_number": 939,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 62.666666666666664,
+        "bbox": [
+            452,
+            320,
+            96,
+            302
+        ]
+    },
+    {
+        "uniqueId": 405,
+        "frame_number": 973,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 64.93333333333334,
+        "bbox": [
+            252,
+            323,
+            147,
+            326
+        ]
+    },
+    {
+        "uniqueId": 436,
+        "frame_number": 975,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 65.06666666666666,
+        "bbox": [
+            736,
+            439,
+            119,
+            202
+        ]
+    },
+    {
+        "uniqueId": 422,
+        "frame_number": 1008,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 67.26666666666667,
+        "bbox": [
+            427,
+            308,
+            86,
+            322
+        ]
+    },
+    {
+        "uniqueId": 459,
+        "frame_number": 1035,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 69.06666666666666,
+        "bbox": [
+            744,
+            445,
+            109,
+            149
+        ]
+    },
+    {
+        "uniqueId": 478,
+        "frame_number": 1065,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 71.06666666666666,
+        "bbox": [
+            506,
+            486,
+            156,
+            231
+        ]
+    },
+    {
+        "uniqueId": 491,
+        "frame_number": 1148,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 76.6,
+        "bbox": [
+            543,
+            381,
+            78,
+            177
+        ]
+    },
+    {
+        "uniqueId": 517,
+        "frame_number": 1153,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 76.93333333333334,
+        "bbox": [
+            810,
+            608,
+            136,
+            111
+        ]
+    },
+    {
+        "uniqueId": 443,
+        "frame_number": 1169,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 78.0,
+        "bbox": [
+            687,
+            348,
+            147,
+            264
+        ]
+    },
+    {
+        "uniqueId": 470,
+        "frame_number": 1175,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 78.4,
+        "bbox": [
+            324,
+            316,
+            104,
+            314
+        ]
+    },
+    {
+        "uniqueId": 527,
+        "frame_number": 1178,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 78.6,
+        "bbox": [
+            714,
+            526,
+            106,
+            189
+        ]
+    },
+    {
+        "uniqueId": 528,
+        "frame_number": 1181,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 78.8,
+        "bbox": [
+            581,
+            375,
+            95,
+            334
+        ]
+    },
+    {
+        "uniqueId": 534,
+        "frame_number": 1192,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 79.53333333333333,
+        "bbox": [
+            815,
+            618,
+            105,
+            101
+        ]
+    },
+    {
+        "uniqueId": 544,
+        "frame_number": 1203,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 80.26666666666667,
+        "bbox": [
+            765,
+            551,
+            125,
+            168
+        ]
+    },
+    {
+        "uniqueId": 515,
+        "frame_number": 1217,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 81.2,
+        "bbox": [
+            252,
+            450,
+            141,
+            269
+        ]
+    },
+    {
+        "uniqueId": 420,
+        "frame_number": 1223,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 81.6,
+        "bbox": [
+            268,
+            318,
+            129,
+            303
+        ]
+    },
+    {
+        "uniqueId": 551,
+        "frame_number": 1241,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 82.8,
+        "bbox": [
+            751,
+            343,
+            117,
+            261
+        ]
+    },
+    {
+        "uniqueId": 291,
+        "frame_number": 1250,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 83.4,
+        "bbox": [
+            543,
+            408,
+            126,
+            165
+        ]
+    },
+    {
+        "uniqueId": 414,
+        "frame_number": 1257,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 83.86666666666666,
+        "bbox": [
+            403,
+            338,
+            133,
+            264
+        ]
+    },
+    {
+        "uniqueId": 567,
+        "frame_number": 1260,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 84.06666666666666,
+        "bbox": [
+            804,
+            388,
+            116,
+            326
+        ]
+    },
+    {
+        "uniqueId": 388,
+        "frame_number": 1261,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 84.13333333333334,
+        "bbox": [
+            474,
+            457,
+            102,
+            176
+        ]
+    },
+    {
+        "uniqueId": 568,
+        "frame_number": 1261,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 84.13333333333334,
+        "bbox": [
+            442,
+            571,
+            79,
+            147
+        ]
+    },
+    {
+        "uniqueId": 571,
+        "frame_number": 1272,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 84.86666666666666,
+        "bbox": [
+            517,
+            607,
+            112,
+            112
+        ]
+    },
+    {
+        "uniqueId": 564,
+        "frame_number": 1275,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 85.06666666666666,
+        "bbox": [
+            777,
+            328,
+            119,
+            296
+        ]
+    },
+    {
+        "uniqueId": 561,
+        "frame_number": 1286,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 85.8,
+        "bbox": [
+            396,
+            357,
+            117,
+            227
+        ]
+    },
+    {
+        "uniqueId": 509,
+        "frame_number": 1287,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 85.86666666666666,
+        "bbox": [
+            416,
+            373,
+            118,
+            314
+        ]
+    },
+    {
+        "uniqueId": 570,
+        "frame_number": 1298,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 86.6,
+        "bbox": [
+            881,
+            577,
+            115,
+            142
+        ]
+    },
+    {
+        "uniqueId": 586,
+        "frame_number": 1303,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 86.93333333333334,
+        "bbox": [
+            729,
+            548,
+            133,
+            171
+        ]
+    },
+    {
+        "uniqueId": 532,
+        "frame_number": 1317,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 87.86666666666666,
+        "bbox": [
+            531,
+            417,
+            74,
+            123
+        ]
+    },
+    {
+        "uniqueId": 603,
+        "frame_number": 1340,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 89.4,
+        "bbox": [
+            385,
+            507,
+            115,
+            208
+        ]
+    },
+    {
+        "uniqueId": 466,
+        "frame_number": 1349,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 90.0,
+        "bbox": [
+            286,
+            316,
+            98,
+            305
+        ]
+    },
+    {
+        "uniqueId": 438,
+        "frame_number": 1360,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 90.73333333333333,
+        "bbox": [
+            445,
+            363,
+            88,
+            214
+        ]
+    },
+    {
+        "uniqueId": 616,
+        "frame_number": 1369,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 91.33333333333333,
+        "bbox": [
+            624,
+            599,
+            125,
+            120
+        ]
+    },
+    {
+        "uniqueId": 617,
+        "frame_number": 1372,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 91.53333333333333,
+        "bbox": [
+            365,
+            373,
+            104,
+            342
+        ]
+    },
+    {
+        "uniqueId": 476,
+        "frame_number": 1373,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 91.6,
+        "bbox": [
+            380,
+            378,
+            92,
+            206
+        ]
+    },
+    {
+        "uniqueId": 620,
+        "frame_number": 1375,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 91.73333333333333,
+        "bbox": [
+            849,
+            596,
+            165,
+            123
+        ]
+    },
+    {
+        "uniqueId": 625,
+        "frame_number": 1390,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 92.73333333333333,
+        "bbox": [
+            796,
+            643,
+            87,
+            76
+        ]
+    },
+    {
+        "uniqueId": 626,
+        "frame_number": 1390,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 92.73333333333333,
+        "bbox": [
+            432,
+            586,
+            109,
+            133
+        ]
+    },
+    {
+        "uniqueId": 638,
+        "frame_number": 1418,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 94.6,
+        "bbox": [
+            745,
+            543,
+            165,
+            176
+        ]
+    },
+    {
+        "uniqueId": 324,
+        "frame_number": 1441,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 96.13333333333334,
+        "bbox": [
+            476,
+            371,
+            114,
+            196
+        ]
+    },
+    {
+        "uniqueId": 371,
+        "frame_number": 1448,
+        "poi.name": "Poi 2",
+        "start_time": "2024-06-30 18:17:28",
+        "current_time": 96.6,
+        "bbox": [
+            482,
+            390,
+            110,
+            283
+        ]
+    }
+]
