@@ -131,15 +131,14 @@ class PersonAndFaceResult:
         self.yolo_results_body = results_body
         self.yolo_results_face = results_face
 
-        # Mapear as detecções de face para as de pessoa
         self.face_to_person_map: Dict[int, Optional[int]] = {ind: None for ind in self.get_bboxes_inds("face", self.yolo_results_face)}
         self.unassigned_persons_inds: List[int] = self.get_bboxes_inds("person", self.yolo_results_body)
 
-        # Número de objetos em cada detecção
         n_objects = len(self.yolo_results_body.boxes) + len(self.yolo_results_face.boxes)
         self.ages: List[Optional[float]] = [None for _ in range(n_objects)]
         self.genders: List[Optional[str]] = [None for _ in range(n_objects)]
         self.gender_scores: List[Optional[float]] = [None for _ in range(n_objects)]
+        self.bboxes: List[Optional[int]] = [None for _ in range(n_objects)]
 
 
     @property
@@ -259,10 +258,13 @@ class PersonAndFaceResult:
         """
 
         for face_ind, person_ind in self.face_to_person_map.items():
-            pguid = self._get_id_by_ind(person_ind)
-            fguid = self._get_id_by_ind(face_ind)
+            pguid = self._get_id_by_ind(self.yolo_results_body, person_ind)
+            fguid = self._get_id_by_ind(self.yolo_results_face, face_ind)
 
-            if fguid == -1 and pguid == -1:
+            bbox = self.get_bbox_by_ind(person_ind, self.yolo_results_body)
+            bboxFace = self.get_bbox_by_ind(face_ind, self.yolo_results_face)
+
+            if fguid == -1 or pguid == -1:
                 # YOLO might not assign ids for some objects in some cases:
                 # https://github.com/ultralytics/ultralytics/issues/3830
                 continue
@@ -271,9 +273,12 @@ class PersonAndFaceResult:
                 continue
             self.set_age(face_ind, age)
             self.set_gender(face_ind, gender, 1.0)
+            self.set_bbox(face_ind, bboxFace)
+
             if pguid != -1:
                 self.set_gender(person_ind, gender, 1.0)
                 self.set_age(person_ind, age)
+                self.set_bbox(person_ind, bbox)
 
         for person_ind in self.unassigned_persons_inds:
             pid = self._get_id_by_ind(person_ind)
@@ -284,6 +289,7 @@ class PersonAndFaceResult:
                 continue
             self.set_gender(person_ind, gender, 1.0)
             self.set_age(person_ind, age)
+            self.set_bbox(person_ind, bbox)
 
     def _get_id_by_ind(self, results: Results, ind: Optional[int] = None) -> int:
         if ind is None:
@@ -311,6 +317,10 @@ class PersonAndFaceResult:
         if ind is not None:
             self.genders[ind] = gender
             self.gender_scores[ind] = gender_score
+    
+    def set_bbox(self, ind: Optional[int], bbox):
+        if ind is not None:
+            self.bboxes[ind] = bbox
 
     @staticmethod
     def _gather_tracking_result(
@@ -339,11 +349,15 @@ class PersonAndFaceResult:
         else:
             face_age = np.mean(face_ages) if face_ages else None
             person_age = np.mean(person_ages) if person_ages else None
-            if face_age is None:
-                face_age = person_age
-            if person_age is None:
-                person_age = face_age
-            age = (face_age + person_age) / 2.0
+
+            # só vamos passar se tiver as duas detecções
+            # if face_age is None:
+            #     face_age = person_age
+            # if person_age is None:
+            #     person_age = face_age
+            
+            if person_age != None and face_age != None:
+                age = (face_age + person_age) / 2.0
 
         genders = face_genders + person_genders
         assert len(genders) > 0
@@ -352,26 +366,66 @@ class PersonAndFaceResult:
 
         return age, gender
 
+    # def get_results_for_tracking(self) -> Tuple[Dict[int, AGE_GENDER_TYPE], Dict[int, AGE_GENDER_TYPE]]:
+    #     """
+    #     Get objects from current frame
+    #     """
+    #     persons: Dict[int, AGE_GENDER_TYPE] = {}
+    #     faces: Dict[int, AGE_GENDER_TYPE] = {}
+
+    #     names = self.yolo_results.names
+    #     pred_boxes = self.yolo_results.boxes
+    #     for _, (det, age, gender, _) in enumerate(zip(pred_boxes, self.ages, self.genders, self.gender_scores)):
+    #         if det.id is None:
+    #             continue
+    #         cat_id, _, guid = int(det.cls), float(det.conf), int(det.id.item())
+    #         name = names[cat_id]
+    #         if name == "person":
+    #             persons[guid] = (age, gender)
+    #         elif name == "face":
+    #             faces[guid] = (age, gender)
+
+    #     return persons, faces
+
     def get_results_for_tracking(self) -> Tuple[Dict[int, AGE_GENDER_TYPE], Dict[int, AGE_GENDER_TYPE]]:
         """
-        Get objects from current frame
+        Get objects from current frame.
+        Return:
+            persons: A dict mapping person track IDs to (age, gender)
+            faces: A dict mapping face track IDs to (age, gender)
         """
         persons: Dict[int, AGE_GENDER_TYPE] = {}
         faces: Dict[int, AGE_GENDER_TYPE] = {}
+        bboxes: Dict[int, torch.Tensor] = {}
 
-        names = self.yolo_results.names
-        pred_boxes = self.yolo_results.boxes
-        for _, (det, age, gender, _) in enumerate(zip(pred_boxes, self.ages, self.genders, self.gender_scores)):
+        # iterar sobre os boxes de corpo (yolo_results_body)
+        names_body = self.yolo_results_body.names
+        pred_boxes_body = self.yolo_results_body.boxes
+        # for _, (det, age, gender, _) in enumerate(zip(pred_boxes_body, self.ages, self.genders, self.gender_scores)):
+        for _, (det, age, gender, bbox) in enumerate(zip(pred_boxes_body, self.ages, self.genders, pred_boxes_body.xyxy)):
             if det.id is None:
                 continue
             cat_id, _, guid = int(det.cls), float(det.conf), int(det.id.item())
-            name = names[cat_id]
+            name = names_body[cat_id]
             if name == "person":
                 persons[guid] = (age, gender)
-            elif name == "face":
+                bboxes[guid] = bbox
+
+        # iterar sobre os boxes de face (yolo_results_face)
+        names_face = self.yolo_results_face.names
+        pred_boxes_face = self.yolo_results_face.boxes
+        # for _, (det, age, gender, _) in enumerate(zip(pred_boxes_face, self.ages, self.genders, self.gender_scores)):
+        for _, (det, age, gender, bbox) in enumerate(zip(pred_boxes_face, self.ages, self.genders, pred_boxes_face.xyxy)):
+            if det.id is None:
+                continue
+            cat_id, _, guid = int(det.cls), float(det.conf), int(det.id.item())
+            name = names_face[cat_id]
+            if name == "face":
                 faces[guid] = (age, gender)
+                bboxes[guid] = bbox
 
         return persons, faces
+
 
     def associate_faces_with_persons(self):
         face_bboxes_inds = self.get_bboxes_inds("face", self.yolo_results_face)

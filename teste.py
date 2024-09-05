@@ -7,7 +7,7 @@ import os
 mivolo_path = 'models/model_imdb_cross_person_4.22_99.46.pth.tar'
 detector_path_personface = 'models/yolov8x_person_face.pt'
 detector_path_face = 'models/yolov8l-face.pt' 
-detector_path_person = 'models/yolov8_person.pt'
+detector_path_person = 'models/yolov8n_custom_1280.pt'
 all_detections = 'jsons/test_detectionsFinal0.6.json'
 
 frame_path = 'videos/Teste Fila_6_6_20240630181728_frame1454.png'
@@ -18,7 +18,7 @@ ds_detections2 = 'jsons/last_detections1453.json'
 
 ds_detectionsPOI2 = 'jsons/poi2.json'
 
-detections = AGDetections(mivolo_path, detector_path_personface, detector_path_face)
+detections = AGDetections(mivolo_path, detector_path_person, detector_path_face)
 img = cv2.imread(frame_path)
 poi = (402, 406, 532, 314)
 
