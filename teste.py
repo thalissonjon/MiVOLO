@@ -19,13 +19,14 @@ ds_detections2 = 'jsons/last_detections1453.json'
 ds_detectionsPOI2 = 'jsons/poi2.json'
 
 detections = AGDetections(mivolo_path, detector_path_person, detector_path_face)
-img = cv2.imread(frame_path)
+# img = cv2.imread(frame_path)
 poi = (402, 406, 532, 314)
 
 with open(ds_detectionsPOI2, 'r') as f:
     json_data = json.load(f)
 
 # while True:
+
 #     detections.detect_age_gender(img, json_data)
 #     time.sleep(10)
 

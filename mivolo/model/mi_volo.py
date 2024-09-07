@@ -159,6 +159,7 @@ class MiVOLO:
         
         faces_input, person_input, faces_inds, bodies_inds = self.prepare_crops(image, detected_bboxes)
         
+        
         if faces_input is not None and (faces_input.shape[0] <= 0 or faces_input.shape[1] <= 0):
             raise ValueError("Recorte da imagem resultou em dimensões inválidas (altura ou largura <= 0)")
 

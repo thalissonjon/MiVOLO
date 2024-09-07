@@ -190,13 +190,13 @@ def main():
         # roi = (288, 446, 738, 273) # POI 2
         # roi = (262, 306, 470, 252) # POI 3
 
-        print(f"ROI selecioando: {roi}")
+        # print(f"ROI selecioando: {roi}")
         if args.draw:
             fourcc = cv2.VideoWriter_fourcc(*"XVID")
             out = cv2.VideoWriter(outfilename, fourcc, fps, res)
             _logger.info(f"Saving result to {outfilename}..")
 
-        for (detected_objects_history, frame) in predictor.recognize_video(args.input, roi=roi):
+        for (detected_objects_history, frame) in predictor.recognize_video(args.input):
             if args.draw:
                 out.write(frame)
                 # out.write(frame_cropped)
@@ -264,7 +264,7 @@ if __name__ == "__main__":
 #python demo.py --input "videos/Teste Fila_6_6_20240629231343.avi" --output "output" --detector-weights "models/yolov8x_person_face.pt" --checkpoint "models/model_imdb_cross_person_4.22_99.46.pth.tar" --device "cuda:0" --with-persons --draw  #MIVOLOD1 + YOLOV8XFACEPERSON + body e face output\out_Teste Fila_6_6_20240629231343(MV1256face_body).avi
 
 #python demo.py --input "videos/Teste Fila_6_6_20240630181728Frente.avi" --output "output" --detector-weights "models/yolov8x_person_face.pt" --checkpoint "models/model_imdb_cross_person_4.22_99.46.pth.tar" --device "cuda:0" --with-persons --draw #MIVOLOD1 + YOLOV8XFACEPERSON + body e face output\out_Teste Fila_6_6_20240630181728Frente(MV1256face_body).avi
-#python demo.py --input "videos/Teste Fila_6_6_20240630181728Frente.avi" --output "output" --detector-weights "models/yolov8x_person_face.pt" --checkpoint "models/model_imdb_cross_person_4.22_99.46.pth.tar" --device "cuda:0" --draw #MIVOLOD1 + YOLOV8XFACEPERSON + apenas face output\out_Teste Fila_6_6_20240630181728Frente(MV1256face).avi
+#"python demo.py --input "videos/Teste Fila_6_6_20240630181728Frente.avi" --output "output" --detector-weights "models/yolov8x_person_face.pt" --checkpoint "models/model_imdb_cross_person_4.22_99.46.pth.tar" --device "cuda:0" --draw" #MIVOLOD1 + YOLOV8XFACEPERSON + apenas face output\out_Teste Fila_6_6_20240630181728Frente(MV1256face).avi
 #python demo.py --input "videos/Teste Fila_6_6_20240630181728Frente.avi" --output "output" --detector-weights "models/yolov8l-face.pt" --checkpoint "models/model_imdb_cross_person_4.22_99.46.pth.tar" --device "cuda:0" --draw #MIVOLOD1 + YOLOV8lface + apenas face output\out_Teste Fila_6_6_20240630181728Frente(MV1256face_yolov8lface
 # 
 

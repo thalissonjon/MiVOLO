@@ -38,10 +38,12 @@ def configure_logger(name, logger_level=logging.INFO):
 
 logger = configure_logger(__name__)
 
+# problema ploot idade face
+
 class AGDetections:
     # checkpoint = mivolo
     # detector_weights = yolo face/person detector 
-    def __init__(self, checkpoint, detector_weights_body, detector_weights_face, device="cuda", verbose=True, logger=None):
+    def __init__(self, checkpoint, detector_weights_body, detector_weights_face, device="cpu", verbose=True, logger=None):
         if logger:
             self.logger = logger 
         else:
@@ -99,6 +101,8 @@ class AGDetections:
         current_frame_objs = combined_results.get_results_for_tracking()
         cur_persons: Dict[int, AGE_GENDER_TYPE] = current_frame_objs[0]
         cur_faces: Dict[int, AGE_GENDER_TYPE] = current_frame_objs[1]
+        cur_bbox: Dict[List, torch.tensor] = current_frame_objs[2]
+        cur_id: Dict[int, int] = current_frame_objs[3]
 
         # add tr_persons and tr_faces to history
         for guid, data in cur_persons.items():
@@ -108,8 +112,13 @@ class AGDetections:
         for guid, data in cur_faces.items():
             if None not in data:
                 detected_objects[guid].append(data)
-
+  
         combined_results.set_tracked_age_gender(detected_objects)
+
+        for guid, data in cur_bbox.items():
+            detected_objects[guid].append(data)
+        for guid, data in cur_id.items():
+            detected_objects[guid].append(data)  
         
         out_im1 = combined_results.plot(combined_results.yolo_results_face)
         out_im = combined_results.plot(combined_results.yolo_results_body)
@@ -117,7 +126,7 @@ class AGDetections:
         filename = os.path.join('outputFrame', f"out_testFace.jpg")
         cv2.imwrite(filename, out_im1)
 
-        return detected_objects, out_im
+        return combined_results, out_im
 
 
     def calculate_iou(self, bbox1, bbox2):
@@ -187,18 +196,22 @@ class AGDetections:
     def extract_person_info(self, detected_objects):
         person_info = []
         person_inds = detected_objects.get_bboxes_inds("person", detected_objects.yolo_results_body)
+        # person_inds = {guid: data[-1] for guid, data in detected_objects.items()}
         # person_inds = detected_objects.get_bboxes_inds("face")
 
         for ind in person_inds:
-            person_id = detected_objects._get_id_by_ind(detected_objects.yolo_results_body, ind)
-            bbox = detected_objects.get_bbox_by_ind(ind, detected_objects.yolo_results_body)
+            if not isinstance(detected_objects.ages[ind], np.float64):
+                continue
+            # person_id = detected_objects._get_id_by_ind(detected_objects.yolo_results_body, ind)
+            # bbox = detected_objects.get_bbox_by_ind(ind, detected_objects.yolo_results_body)
+            bbox = detected_objects.bboxes[ind]
             age = detected_objects.ages[ind]
             gender = detected_objects.genders[ind]
 
             person_info.append({
-                "id": person_id,
+                # "id": person_id,
                 "bbox": bbox.cpu().numpy().tolist(),
-                "age": age,
+                "age": int(age),
                 "gender": gender
             })
 
@@ -220,24 +233,4 @@ class AGDetections:
     def get_all_detections(self):
         return self.associated_persons_ids
 
-    def associate_faces_with_persons(self, detected_objects_body, detected_objects_face):
-        face_to_person_map: Dict[int, Optional[int]] = {ind: None for ind in detected_objects_face.get_bboxes_inds("face")}
-        unassigned_persons_inds: List[int] = detected_objects_body.get_bboxes_inds("person")
 
-        face_bboxes_inds: List[int] = detected_objects_face.get_bboxes_inds("face")
-        person_bboxes_inds: List[int] = detected_objects_body.get_bboxes_inds("person")
-
-        face_bboxes: List[torch.tensor] = [detected_objects_face.get_bbox_by_ind(ind) for ind in face_bboxes_inds]
-        person_bboxes: List[torch.tensor] = [detected_objects_body.get_bbox_by_ind(ind) for ind in person_bboxes_inds]
-
-        face_to_person_map = {ind: None for ind in face_bboxes_inds}
-        assigned_faces, unassigned_persons_inds = assign_faces(person_bboxes, face_bboxes)
-
-        for face_ind, person_ind in enumerate(assigned_faces):
-            face_ind = face_bboxes_inds[face_ind]
-            person_ind = person_bboxes_inds[person_ind] if person_ind is not None else None
-            face_to_person_map[face_ind] = person_ind
-        
-        unassigned_persons_inds = [person_bboxes_inds[person_ind] for person_ind in unassigned_persons_inds]
-
-        return assigned_faces
